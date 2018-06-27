@@ -3,6 +3,7 @@ package ecloud.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Table(name = "GROUPS")
@@ -38,6 +39,10 @@ public class Group {
     @Column(name = "IMAGEPATH", length =100, unique = false)
     @Size(min = 1, max = 100)
     private String imagePath;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "Group_ID", referencedColumnName = "ID")
+    private Set<GroupOrder> groupOrders;
 
     public Long getId() {
         return id;
@@ -93,5 +98,13 @@ public class Group {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public Set<GroupOrder> getGroupOrders() {
+        return groupOrders;
+    }
+
+    public void setGroupOrders(Set<GroupOrder> groupOrders) {
+        this.groupOrders = groupOrders;
     }
 }
