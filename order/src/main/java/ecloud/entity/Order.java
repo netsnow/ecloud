@@ -2,6 +2,7 @@ package ecloud.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ORDERS")
@@ -15,6 +16,11 @@ public class Order {
     @Column(name = "GOODID", unique = false)
     @NotNull
     private Long goodId;
+
+    @Column(name = "GOODNAME", length = 20 ,unique = false)
+    @Size(min = 1,max = 20)
+    @NotNull
+    private String goodName;
 
     @Column(name = "COUNT", unique = false)
     @NotNull
@@ -66,5 +72,13 @@ public class Order {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getGoodName() {
+        return goodName;
+    }
+
+    public void setGoodName(String goodName) {
+        this.goodName = goodName;
     }
 }
