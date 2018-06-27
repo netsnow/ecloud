@@ -1,6 +1,4 @@
 
-good/.idea
-
-good/good-server.iml
-
-good/target
+*/.idea
+*/*-server.iml
+*/target
